@@ -77,6 +77,13 @@ exports.findAll = function(req, res) {
   });
 };
 
+exports.search = function(req, res) {
+  console.log('searching for ' + req.params.query)
+  Highlight.find({text: new RegExp(".*"+req.params.query+".*")}, function(error, data) {
+    res.json(data);
+  });
+};
+
 exports.findById = function(req, res) {
     res.json({id:req.params.id, name: "The Name", description: "description"});
 };
